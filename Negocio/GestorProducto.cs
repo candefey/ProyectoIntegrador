@@ -17,6 +17,9 @@ namespace Negocio
             lista = DaoProducto.select();
             return lista;
         }
+
+        public static void probandoSuerte()
+        { }
         
 
 
