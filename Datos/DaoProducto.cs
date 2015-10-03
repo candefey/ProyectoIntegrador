@@ -11,8 +11,10 @@ namespace Datos
 {
     public class DaoProducto
     {
-        private static string cadenaConex = "Data Source=ASUS-FEY;Initial Catalog=Gimnasios;Integrated Security=True";
+        private static string cadenaConex = "Data Source=GIU-PC\\SQLEXPRESS;Initial Catalog=Gimnasios;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+        /**
+         Retorna una List con todos los productos existentes en la base de datos**/
         public static List<Producto> select()
         {
             List<Producto> lista = new List<Producto>();
@@ -30,7 +32,11 @@ namespace Datos
                 {
                     Producto p = new Producto();
                     p.Nombre = dr["NombreProd"].ToString();
-                    p.Categoria = dr["NombreCat"].ToString();
+
+                    CategoriaProducto cat = new CategoriaProducto();
+                    cat.Nombre = (dr["NombreCat"].ToString());
+
+                    p.Categoria = cat;
                     int aceptaDev = (int)dr["aceptaDevolucion"];
                     Boolean acepta = false;
                     if (aceptaDev == 1)
@@ -43,15 +49,11 @@ namespace Datos
                     p.Precio = float.Parse(dr["precio"].ToString());
                     p.Stock = (int)dr["stock"];
                     lista.Add(p);
-
                 }
-
             }
-
             catch (SqlException ex)
             {
                 throw new ApplicationException("Error SQL al obtener los Productos.");
-
             }
             finally
             {
@@ -61,32 +63,56 @@ namespace Datos
             return lista;
         }
 
+        /**Permite insertar un Producto p recibido por parametro a la bd**/
         public static Boolean insert(Producto p)
         {
-            //SqlConnection cn= new SqlConnection();
-            //SqlTransaction tran = null;
-            //try
-            //{
-            //    cn.ConnectionString = cadenaConex;
-            //    cn.Open();
-            //    tran = cn.BeginTransaction();
-            //    string sql = "";
-            //    SqlCommand cmd = new SqlCommand();
-            //    cmd.CommandText = sql;
-            //    cmd.Connection = cn;
-            //}
-            
+            Boolean inserto = true;
+            SqlConnection cn = new SqlConnection();
+            SqlTransaction tran = null;
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                tran = cn.BeginTransaction();
+                string sql = "INSERT INTO Productos(nombre,precio,stock,fechaRegistro,codigoBarra,idCategoriaProducto,aceptaDevolucion) VALUES(@nombre,@precio,@stock,@fechaRegistro,@codigoBarra,@idCategoriaProducto,@aceptaDevolucion)";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = cn;
+                cmd.Transaction = tran;
 
-
-                return true;
+                cmd.Parameters.AddWithValue("@nombre", p.Nombre);
+                cmd.Parameters.AddWithValue("@precio", p.Precio);
+                cmd.Parameters.AddWithValue("@stock", p.Stock);
+                cmd.Parameters.AddWithValue("@fechaRegistro", p.FechaRegistro);
+                cmd.Parameters.AddWithValue("@codigoBarra", p.CodigoBarra);
+                //QUE HAGO CON ID CAT PROD
+                cmd.Parameters.AddWithValue("@aceptaDevolucion", p.AceptaDevolucion);
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (SqlException E)
+            {
+                throw new ApplicationException("Error sql al guardar el producto.");
+                inserto = false;
+                if (cn.State == ConnectionState.Open)
+                    tran.Rollback();
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+            return inserto;
         }
-
-
-
     }
 
 
 
 
 }
+
+
+
+
+
 

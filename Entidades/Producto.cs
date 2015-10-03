@@ -14,13 +14,13 @@ namespace Entidades
         private int stock;
         private DateTime fechaRegistro;
         private int codigoBarra;
-        private string categoria;
+        private CategoriaProducto categoria;
         private Boolean aceptaDevolucion;
 
         public Producto()
             {}
 
-        public Producto(int idProducto, string nombre, float precio, int stock, DateTime fechaRegistro, int codigoBarra, string categoria, bool aceptaDevolucion)
+        public Producto(int idProducto, string nombre, float precio, int stock, DateTime fechaRegistro, int codigoBarra, CategoriaProducto categoria, bool aceptaDevolucion)
         {
             this.idProducto = idProducto;
             this.nombre = nombre;
@@ -28,8 +28,8 @@ namespace Entidades
             this.stock = stock;
             this.fechaRegistro = fechaRegistro;
             this.codigoBarra = codigoBarra;
-            this.categoria = categoria;
-            this.AceptaDevolucion = aceptaDevolucion;
+            this.Categoria = categoria;
+            this.aceptaDevolucion = aceptaDevolucion;
         }
 
         public int IdProducto
@@ -112,21 +112,6 @@ namespace Entidades
 
         
 
-     
-
-        public string Categoria
-        {
-            get
-            {
-                return categoria;
-            }
-
-            set
-            {
-                categoria = value;
-            }
-        }
-
         public bool AceptaDevolucion
         {
             get
@@ -137,6 +122,19 @@ namespace Entidades
             set
             {
                 aceptaDevolucion = value;
+            }
+        }
+
+        public CategoriaProducto Categoria
+        {
+            get
+            {
+                return categoria;
+            }
+
+            set
+            {
+                categoria = value;
             }
         }
     }
