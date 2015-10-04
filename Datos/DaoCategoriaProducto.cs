@@ -11,10 +11,12 @@ namespace Datos
 {
     public class DaoCategoriaProducto
     {
-        public static List<CategoriaProducto> select()
+        static String cadenaConex = "Data Source=GIU-PC\\SQLEXPRESS;Initial Catalog=Gimnasios;Integrated Security=True";
+
+        public static DataSet select()
         {
-            List<CategoriaProducto> lista = new List<CategoriaProducto>();
-            string cadenaConex = "Data Source=GIU-PC\\SQLEXPRESS;Initial Catalog=Gimnasios;Integrated Security=True";
+            //List<CategoriaProducto> lista = new List<CategoriaProducto>();
+            DataSet ds;
             SqlConnection cn = new SqlConnection();
             try
             {
@@ -24,14 +26,17 @@ namespace Datos
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = consulta;
                 cmd.Connection = cn;
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    CategoriaProducto cp = new CategoriaProducto();
-                    cp.IdCategoriaProducto = (int)dr["idCategoriaProducto"];
-                    cp.Nombre = dr["nombre"].ToString();
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                sda.Fill(ds);
+
+                //while (dr.Read())
+                //{
+                //    CategoriaProducto cp = new CategoriaProducto();
+                //    cp.IdCategoriaProducto = (int)dr["idCategoriaProducto"];
+                //    cp.Nombre = dr["nombre"].ToString();
                     
-                }
+                //}
 
             }
 
@@ -42,10 +47,46 @@ namespace Datos
             }
             finally
             {
-                if (cn.State == ConnectionState.Open)
+
                     cn.Close();
             }
-            return lista;
+            return ds;
+        }
+
+        public static CategoriaProducto selectPorNombre(String nombre)
+        {
+            CategoriaProducto cp = new CategoriaProducto();
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                string consulta = "SELECT idCategoriaProducto FROM CategoriasProducto WHERE nombre LIKE '"+nombre+"'";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = consulta;
+                cmd.Connection = cn;
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    cp.IdCategoriaProducto = (int)dr["idCategoriaProducto"];
+                    cp.Nombre = nombre;
+                }
+                
+            }
+            catch (SqlException ex)
+            {
+                throw new ApplicationException("Error SQL al obtener idCategoria.");
+            }
+            finally
+            {
+                    cn.Close();
+            }
+
+            return cp;
+
         }
     }
+
+
+  
 }

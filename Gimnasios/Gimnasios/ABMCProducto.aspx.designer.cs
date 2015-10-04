@@ -30,13 +30,22 @@ public partial class ABMCProducto {
     protected global::System.Web.UI.WebControls.Label Label1;
     
     /// <summary>
-    /// TextBox1 control.
+    /// txt_nombre control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox TextBox1;
+    protected global::System.Web.UI.WebControls.TextBox txt_nombre;
+    
+    /// <summary>
+    /// RequiredFieldValidator1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
     
     /// <summary>
     /// Label2 control.
@@ -57,6 +66,24 @@ public partial class ABMCProducto {
     protected global::System.Web.UI.WebControls.TextBox txt_precio;
     
     /// <summary>
+    /// RequiredFieldValidator2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+    
+    /// <summary>
+    /// RangeValidator control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RangeValidator RangeValidator;
+    
+    /// <summary>
     /// Label3 control.
     /// </summary>
     /// <remarks>
@@ -73,6 +100,24 @@ public partial class ABMCProducto {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox txt_stock;
+    
+    /// <summary>
+    /// RequiredFieldValidator3 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+    
+    /// <summary>
+    /// RangeValidator1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
     
     /// <summary>
     /// Label4 control.
@@ -111,6 +156,33 @@ public partial class ABMCProducto {
     protected global::System.Web.UI.WebControls.TextBox txt_codigoBarra;
     
     /// <summary>
+    /// RequiredFieldValidator4 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+    
+    /// <summary>
+    /// RangeValidator2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RangeValidator RangeValidator2;
+    
+    /// <summary>
+    /// Label7 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label Label7;
+    
+    /// <summary>
     /// Label6 control.
     /// </summary>
     /// <remarks>
@@ -120,13 +192,13 @@ public partial class ABMCProducto {
     protected global::System.Web.UI.WebControls.Label Label6;
     
     /// <summary>
-    /// DropDownList1 control.
+    /// cbo_categorias control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+    protected global::System.Web.UI.WebControls.DropDownList cbo_categorias;
     
     /// <summary>
     /// check_aceptaDevolucion control.
@@ -136,6 +208,33 @@ public partial class ABMCProducto {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.CheckBox check_aceptaDevolucion;
+    
+    /// <summary>
+    /// btn_guardar control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btn_guardar;
+    
+    /// <summary>
+    /// btn_actualizar control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btn_actualizar;
+    
+    /// <summary>
+    /// btn_limpiar control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btn_limpiar;
     
     /// <summary>
     /// grillaProductos control.
