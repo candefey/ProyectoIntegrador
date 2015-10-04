@@ -18,9 +18,26 @@ namespace Negocio
             return lista;
         }
 
-        public static void probandoSuerte()
-        { }
-        
+        public static void insertarProducto(Producto P)
+        {
+            DaoProducto.insert(P);
+        }
+
+        public static void borrarProducto(int cod)
+        {
+            DaoProducto.borrarPorCodigoBarra(cod);
+        }
+
+        public static Boolean existeProducto(int cod)
+        {
+            return DaoProducto.existeProducto(cod);
+        }
+
+        public static void updatePorCodBarra(Producto P)
+        {
+            DaoProducto.updatePorCodBarra(P);
+        }
+
 
 
 

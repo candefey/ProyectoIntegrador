@@ -85,14 +85,14 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@stock", p.Stock);
                 cmd.Parameters.AddWithValue("@fechaRegistro", p.FechaRegistro);
                 cmd.Parameters.AddWithValue("@codigoBarra", p.CodigoBarra);
-                //QUE HAGO CON ID CAT PROD
+                cmd.Parameters.AddWithValue("@idCategoriaProducto", p.Categoria.IdCategoriaProducto);
                 cmd.Parameters.AddWithValue("@aceptaDevolucion", p.AceptaDevolucion);
                 cmd.ExecuteNonQuery();
                 tran.Commit();
             }
             catch (SqlException E)
             {
-                throw new ApplicationException("Error sql al guardar el producto.");
+                throw new ApplicationException("Error sql al guardar el producto."+E.ToString());
                 inserto = false;
                 if (cn.State == ConnectionState.Open)
                     tran.Rollback();
@@ -104,7 +104,116 @@ namespace Datos
             }
             return inserto;
         }
+
+        public static void borrarPorCodigoBarra(int cod)
+        {
+
+            SqlConnection cn = new SqlConnection();
+            SqlTransaction tran = null;
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                tran = cn.BeginTransaction();
+                string sql = "DELETE FROM Productos WHERE codigoBarra="+cod;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = cn;
+                cmd.Transaction = tran;
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (SqlException E)
+            {
+                throw new ApplicationException("Error sql al borrar el producto." + E.ToString());
+                tran.Rollback();
+            }
+            finally
+            {
+
+                    cn.Close();
+            }
+
+
+
+        }
+
+        public static Boolean existeProducto(int codigo)
+        {
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+
+                string sql = "SELECT nombre FROM Productos WHERE codigoBarra="+codigo;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = cn;
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                    return true;
+                }
+            catch (SqlException E)
+            {
+                throw new ApplicationException("Error sql" + E.ToString());
+                cn.Close();
+            }
+            finally
+            {
+
+                cn.Close();
+            }
+
+            return false;
+        }
+
+        public static void updatePorCodBarra(Producto P)
+        {
+
+            SqlConnection cn = new SqlConnection();
+            SqlTransaction tran = null;
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                tran = cn.BeginTransaction();
+                string sql = "UPDATE Productos SET nombre= @nombre, precio=@precio, stock=@stock, idCategoriaProducto=@idCategoriaProducto, aceptaDevolucion=@aceptaDevolucion WHERE codigoBarra="+P.CodigoBarra;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = cn;
+                cmd.Transaction = tran;
+
+                cmd.Parameters.AddWithValue("@nombre", P.Nombre);
+                cmd.Parameters.AddWithValue("@precio", P.Precio);
+                cmd.Parameters.AddWithValue("@stock", P.Stock);
+                cmd.Parameters.AddWithValue("@idCategoriaProducto", P.Categoria.IdCategoriaProducto);
+                if (P.AceptaDevolucion == true)
+                    cmd.Parameters.AddWithValue("@aceptaDevolucion", 1);
+                else
+                    cmd.Parameters.AddWithValue("@aceptaDevolucion", 0);
+
+
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (SqlException E)
+            {
+                throw new ApplicationException("Error sql al modificar el producto." + E.ToString());
+                tran.Rollback();
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+        }
+
     }
+
+
+
+
 
 
 
