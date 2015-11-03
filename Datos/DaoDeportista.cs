@@ -11,7 +11,7 @@ namespace Datos
 {
     public class DaoDeportista
     {
-        private static string cadenaConex = "Data Source=ASUS-FEY;Initial Catalog=Gimnasios;Integrated Security=True";
+        private static string cadenaConex = "Data Source=GIU-PC\\SQLEXPRESS;Initial Catalog=Gimnasios;Integrated Security=True";
 
         /**
          Retorna una List con todos los productos existentes en la base de datos**/

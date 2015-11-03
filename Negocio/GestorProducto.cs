@@ -18,6 +18,13 @@ namespace Negocio
             return lista;
         }
 
+        public static List<DtoProductoVenta> obtenerProdVenta()
+        {
+            List<DtoProductoVenta> lista = new List<DtoProductoVenta>();
+            lista = DaoProducto.selectoDtoProd();
+            return lista;
+        }
+
         public static void insertarProducto(Producto P)
         {
             DaoProducto.insert(P);

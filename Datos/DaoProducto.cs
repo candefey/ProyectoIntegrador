@@ -11,7 +11,7 @@ namespace Datos
 {
     public class DaoProducto
     {
-        private static string cadenaConex = "Data Source=ASUS-FEY;Initial Catalog=Gimnasios;Integrated Security=True";
+        private static string cadenaConex = "Data Source=GIU-PC\\SQLEXPRESS;Initial Catalog=Gimnasios;Integrated Security=True";
 
         /**
          Retorna una List con todos los productos existentes en la base de datos**/
@@ -209,6 +209,39 @@ namespace Datos
 
         }
 
+        public static List<DtoProductoVenta> selectoDtoProd()
+        {
+            List<DtoProductoVenta> lista = new List<DtoProductoVenta>();
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                string consulta = "SELECT P.nombre as NombreProd, P.precio, P.stock FROM Productos P";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = consulta;
+                cmd.Connection = cn;
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    DtoProductoVenta p = new DtoProductoVenta();
+                    p.nombre = dr["NombreProd"].ToString();                  
+                    p.precio = float.Parse(dr["precio"].ToString());
+                    p.stock = (int)dr["stock"];
+                    lista.Add(p);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new ApplicationException("Error SQL al obtener los Productos Simplificados.");
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+            return lista;
+        }
     }
 
 

@@ -106,22 +106,22 @@ namespace Gimnasios
 
         }
 
-        protected void check_mail_Click(object sender, EventArgs e)
-        {
-             if (check_mail.Checked)
-                {
-                txt_mail_dep.Enabled = true;
-                }
-                else
-                {
-                txt_mail_dep.Enabled = false;
-                }
-        }
+        //protected void checkbox_mail_Click(object sender, EventArgs e)
+        //{
+        //     if (checkbox_mail.Checked)
+        //        {
+        //        txt_mail_dep.Enabled = true;
+        //        }
+        //        else
+        //        {
+        //        txt_mail_dep.Enabled = false;
+        //        }
+        //}
 
     protected void btn_guardar_Click(object sender, EventArgs e)
         {
         
-            GestorDeportista.guardarDeportista(txt_nombre_dep.Text, txt_apelido_dep.Text, Int32.Parse(txt_cuit_dep.Text), check_mail.Checked, txt_mail_dep.Text, txt_fechaNac_dep.Text, int.Parse(txt_documento_dep.Text), cmb_tipo_doc.SelectedValue, cmb_gimnasio.SelectedValue, cmb_patologia.SelectedValue, cmb_sexo.SelectedValue);
+            GestorDeportista.guardarDeportista(txt_nombre_dep.Text, txt_apelido_dep.Text, Int32.Parse(txt_cuit_dep.Text), checkbox_mail.Checked, txt_mail_dep.Text, txt_fechaNac_dep.Text, int.Parse(txt_documento_dep.Text), cmb_tipo_doc.SelectedValue, cmb_gimnasio.SelectedValue, cmb_patologia.SelectedValue, cmb_sexo.SelectedValue);
             cargarGrilla();
             limpiarForm();
             SetFocus(grillaDeportistas);
@@ -130,7 +130,7 @@ namespace Gimnasios
         protected void btn_actualizar_Click(object sender, EventArgs e)
         {
             
-            GestorDeportista.actualizarDeportista(txt_nombre_dep.Text, txt_apelido_dep.Text, Int32.Parse(txt_cuit_dep.Text), check_mail.Checked, txt_mail_dep.Text, txt_fechaNac_dep.Text, int.Parse(txt_documento_dep.Text), cmb_tipo_doc.SelectedValue, cmb_gimnasio.SelectedValue, cmb_patologia.SelectedValue, cmb_sexo.SelectedValue);
+            GestorDeportista.actualizarDeportista(txt_nombre_dep.Text, txt_apelido_dep.Text, Int32.Parse(txt_cuit_dep.Text), checkbox_mail.Checked, txt_mail_dep.Text, txt_fechaNac_dep.Text, int.Parse(txt_documento_dep.Text), cmb_tipo_doc.SelectedValue, cmb_gimnasio.SelectedValue, cmb_patologia.SelectedValue, cmb_sexo.SelectedValue);
             cargarGrilla();
             limpiarForm();
             SetFocus(grillaDeportistas);
@@ -199,7 +199,7 @@ namespace Gimnasios
             txt_fechaNac_dep.Text = "";
             txt_cuit_dep.Text = "";
             txt_mail_dep.Text = "";
-            cmb_gimnasio.SelectedIndex = 1;
+            cmb_gimnasio.SelectedIndex = 0;
 
             cmb_sexo.SelectedIndex= 1;
             cmb_patologia.SelectedIndex= 1;
@@ -208,9 +208,11 @@ namespace Gimnasios
 
         }
 
-        protected void check_mail_CheckedChanged(object sender, EventArgs e)
+      
+
+        protected void checkbox_mail_CheckedChanged(object sender, EventArgs e)
         {
-            if (check_mail.Checked)
+            if (checkbox_mail.Checked)
             {
                 txt_mail_dep.Enabled = true;
             }
@@ -219,8 +221,5 @@ namespace Gimnasios
                 txt_mail_dep.Enabled = false;
             }
         }
-
-
-
     }
 }

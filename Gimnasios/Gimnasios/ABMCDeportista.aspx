@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ABMCDeportista.aspx.cs" Inherits="Gimnasios.ABMCDeportista"%>
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Opción Deportistas</title>
@@ -13,24 +14,24 @@
         <div aria-multiline="True" aria-orientation="vertical" aria-dropeffect="move" >
             </div>
     <div aria-multiline="True" aria-orientation="vertical" aria-dropeffect="move" >
-            <asp:Label ID="Lbl_titulo" runat="server" Text="Cargar un nuevo deportista:" Font-Size="Large" Font-Italic="true"></asp:Label>
+            <asp:Label ID="Lbl_titulo" runat="server" ErrorMessage="Cargar un nuevo deportista:" Font-Size="Large" Font-Italic="true"></asp:Label>
             <br />
         <asp:Label ID="lbl_nombre_dep" runat="server" Text="Nombre:"></asp:Label>
        <br />
         <asp:TextBox ID="txt_nombre_dep" runat="server" CssClass="form-control" Width="493px"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_nombre_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo Obligatorio" ControlToValidate="txt_nombre_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
         
         <br />
         <asp:Label ID="lbl_apellido_dep" runat="server" Text="Apellido:"></asp:Label>
         <asp:TextBox ID="txt_apelido_dep" runat="server"  CssClass="form-control" Width="493px"></asp:TextBox>
-          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_apelido_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo Obligatorio" ControlToValidate="txt_apelido_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lbl_fecha_nac" runat="server" Text="Fecha de Nac.:"></asp:Label>            
         <asp:TextBox ID="txt_fechaNac_dep" runat="server"  CssClass="form-control" Width="200px">dd-mm-aaaa</asp:TextBox>
         <asp:CompareValidator id="dateValidator" runat="server"   Type="Date"     Operator="DataTypeCheck"     ControlToValidate="txt_fechaNac_dep"   Text="El formato de la fecha debe ser DD-MM-AAAA" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px">
 </asp:CompareValidator>
         <asp:RangeValidator  runat="server"  ID="RangeValidator1"  Type="Date"  ControlToValidate="txt_fechaNac_dep"   MaximumValue="28-12-9999"   MinimumValue="28/12/1000"  Display="None"  Text="Fecha inválida" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px" />
-          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_fechaNac_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo Obligatorio" ControlToValidate="txt_fechaNac_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
         <br />
 
         <asp:Label ID="lbl_sexo" runat="server" Text="Sexo:"></asp:Label>
@@ -43,11 +44,11 @@
         <br />
         <asp:Label ID="lbl_documento" runat="server" Text="Documento"></asp:Label>
         <asp:TextBox ID="txt_documento_dep" runat="server"  CssClass="form-control" Width="300px" ></asp:TextBox>
-          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_documento_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo Obligatorio" ControlToValidate="txt_documento_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lbl_cuit" runat="server" Text="Cuit:"></asp:Label>
         <asp:TextBox ID="txt_cuit_dep" runat="server"  CssClass="form-control" Width="400px"></asp:TextBox>
-          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_cuit_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo Obligatorio" ControlToValidate="txt_cuit_dep" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
         <br/>
         <asp:Label ID="lbl_tipo_doc0" runat="server" Text="Gimnasio:"></asp:Label>
         <asp:DropDownList ID="cmb_gimnasio" runat="server"></asp:DropDownList>
@@ -57,8 +58,8 @@
         <asp:DropDownList ID="cmb_patologia" runat="server"></asp:DropDownList>
             <br />
         <br/>
-        <asp:CheckBox ID="check_mail" runat="server" Text="Mail" TextAlign="Left" OnClick="check_mail_Click" OnCheckedChanged="check_mail_CheckedChanged"  AutoPostBack="true"  OnDisposed="check_mail_Click" />
             <br />
+            <asp:CheckBox ID="checkbox_mail" runat="server" Text="Mail" AutoPostBack="true" OnCheckedChanged="checkbox_mail_CheckedChanged" />
         <br />      
         <asp:TextBox ID="txt_mail_dep" runat="server"  CssClass="form-control"  Width="400px"></asp:TextBox>
             <br />
@@ -68,7 +69,7 @@
             <asp:Button ID="btn_guardar" runat="server" class="btn btn-success" Text="Guardar" OnClick="btn_guardar_Click" />
             &nbsp;&nbsp;&nbsp;
             
-        <asp:Button ID="btn_cancelar" runat="server" class="btn btn-danger" Text="Cancelar" OnClick="btn_cancelar_Click" />
+        <asp:Button ID="btn_cancelar" CausesValidation="false" runat="server" class="btn btn-danger" Text="Cancelar" OnClick="btn_cancelar_Click" />
         &nbsp;&nbsp;&nbsp;
             <br />
          <br />

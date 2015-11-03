@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class ABMCProducto : System.Web.UI.Page
 {
-    private bool modificar = false;
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -132,6 +132,9 @@ public partial class ABMCProducto : System.Web.UI.Page
     {
         this.limpiarTodo();
         txt_codigoBarra.ReadOnly = false;
+        btn_guardar.Visible = true;
+        btn_actualizar.Visible = false;
+
     }
 
     protected void btn_actualizar_Click(object sender, EventArgs e)
@@ -155,6 +158,7 @@ public partial class ABMCProducto : System.Web.UI.Page
             this.limpiarTodo();
             btn_guardar.Visible = true;
             btn_actualizar.Visible = false;
+            txt_codigoBarra.Enabled = true;
         }
     }
 
