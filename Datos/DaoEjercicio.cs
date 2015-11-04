@@ -11,7 +11,7 @@ namespace Datos
 {
    public class DaoEjercicio
     {
-         private static string cadenaConex = "Data Source=ASUS-FEY;Initial Catalog=Gimnasios;Integrated Security=True";
+         private static string cadenaConex = "Data Source=GIU-PC\\SQLEXPRESS;Initial Catalog=Gimnasios;Integrated Security=True";
         public static DataSet select()
         {
           SqlConnection cn = new SqlConnection();

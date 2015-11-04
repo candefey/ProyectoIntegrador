@@ -34,8 +34,8 @@
                 <%--Scripts de marco--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <%--<asp:ScriptReference Path="~/Scripts/bootstrap.js" />--%>
+              <%--  <asp:ScriptReference Name="bootstrap" />--%>
+                <asp:ScriptReference Path="~/Scripts/bootstrap.js" />
                 <asp:ScriptReference Name="respond" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
@@ -66,6 +66,7 @@
                         <li><a runat="server" href="~/ABMCDeportista">Gestión de Deportistas</a></li>
                         <li><a runat="server" href="~/Venta">Ventas de Productos</a></li>
                         <li><a runat="server" href="~/RegistrarRutina">Nueva Rutina</a></li>
+                        <li><a runat="server" href="~/InformeRutinas">Informe Rutinas</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
