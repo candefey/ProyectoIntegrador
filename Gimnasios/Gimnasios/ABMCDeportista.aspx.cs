@@ -10,13 +10,14 @@ using System.Data;
 
 namespace Gimnasios
 {
-	public partial class ABMCDeportista : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class ABMCDeportista : System.Web.UI.Page
+    {
+        List<Deportista> listaCompleta = GestorDeportista.obtenerTodos();
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (!IsPostBack)
             {
-                this.cargarGrilla();
+                this.cargarGrilla(listaCompleta);
                 this.cargarComboSexo();
                 this.cargarComboTipoDoc();
                 this.cargarComboPatologias();
@@ -24,9 +25,9 @@ namespace Gimnasios
                 txt_mail_dep.Enabled = true;
                 btn_actualizar.Visible = false;
             }
-		}
+        }
 
-        
+
 
         protected void cargarComboSexo()
         {
@@ -35,7 +36,7 @@ namespace Gimnasios
             {
                 cmb_sexo.Items.Add(sexo.Nombre);
             }
-            
+
         }
 
 
@@ -68,10 +69,8 @@ namespace Gimnasios
         }
 
 
-        protected void cargarGrilla()
+        protected void cargarGrilla(List<Deportista> listaDeportistas)
         {
-
-            List<Deportista> listaDeportistas = GestorDeportista.obtenerTodos();
             DataTable dt = new DataTable();
             dt.Columns.Add("Nombre");
             dt.Columns.Add("Apellido");
@@ -118,39 +117,40 @@ namespace Gimnasios
         //        }
         //}
 
-    protected void btn_guardar_Click(object sender, EventArgs e)
+        protected void btn_guardar_Click(object sender, EventArgs e)
         {
-        
+
             GestorDeportista.guardarDeportista(txt_nombre_dep.Text, txt_apelido_dep.Text, Int32.Parse(txt_cuit_dep.Text), checkbox_mail.Checked, txt_mail_dep.Text, txt_fechaNac_dep.Text, int.Parse(txt_documento_dep.Text), cmb_tipo_doc.SelectedValue, cmb_gimnasio.SelectedValue, cmb_patologia.SelectedValue, cmb_sexo.SelectedValue);
-            cargarGrilla();
+            cargarGrilla(listaCompleta);
             limpiarForm();
             SetFocus(grillaDeportistas);
         }
 
         protected void btn_actualizar_Click(object sender, EventArgs e)
         {
-            
+
             GestorDeportista.actualizarDeportista(txt_nombre_dep.Text, txt_apelido_dep.Text, Int32.Parse(txt_cuit_dep.Text), checkbox_mail.Checked, txt_mail_dep.Text, txt_fechaNac_dep.Text, int.Parse(txt_documento_dep.Text), cmb_tipo_doc.SelectedValue, cmb_gimnasio.SelectedValue, cmb_patologia.SelectedValue, cmb_sexo.SelectedValue);
-            cargarGrilla();
+            cargarGrilla(listaCompleta);
             limpiarForm();
             SetFocus(grillaDeportistas);
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
-           limpiarForm();
+            limpiarForm();
         }
 
+        
         protected void grillaDeportistas_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
-             string x = e.CommandName;
-             int index = Convert.ToInt32(e.CommandArgument);
+            string x = e.CommandName;
+            int index = Convert.ToInt32(e.CommandArgument);
             if (x == "Delete")
             {
 
                 int cuit = int.Parse(grillaDeportistas.Rows[index].Cells[8].Text);
                 GestorDeportista.eliminarDeportista(cuit);
-                cargarGrilla();
+                cargarGrilla(listaCompleta);
                 SetFocus(grillaDeportistas);
             }
             if (x == "Select")
@@ -186,7 +186,7 @@ namespace Gimnasios
             cmb_sexo.SelectedValue = GestorDeportista.obtenerSexo(sexo).Nombre;
             cmb_patologia.SelectedValue = GestorDeportista.obtenerPatologia(pato).Nombre;
             cmb_tipo_doc.SelectedValue = GestorDeportista.obtenerTipoDoc(tipoDoc).Nombre;
-            
+
         }
 
 
@@ -201,14 +201,16 @@ namespace Gimnasios
             txt_mail_dep.Text = "";
             cmb_gimnasio.SelectedIndex = 0;
 
-            cmb_sexo.SelectedIndex= 1;
-            cmb_patologia.SelectedIndex= 1;
-            cmb_tipo_doc.SelectedIndex= 1;
-
+            cmb_sexo.SelectedIndex = 0;
+            cmb_patologia.SelectedIndex = 0;
+            cmb_tipo_doc.SelectedIndex = 0;
+            btn_actualizar.Visible = false;
+            btn_cancelar.Visible = false;
+            btn_guardar.Visible = true;
 
         }
 
-      
+
 
         protected void checkbox_mail_CheckedChanged(object sender, EventArgs e)
         {
@@ -219,6 +221,24 @@ namespace Gimnasios
             else
             {
                 txt_mail_dep.Enabled = false;
+            }
+        }
+
+        protected void txt_buscar_TextChanged(object sender, EventArgs e)
+        {
+            string cadena = txt_buscar.Text;            
+            cargarGrilla(GestorDeportista.filtrarDeportista(cadena));
+            limpiarForm();
+            SetFocus(grillaDeportistas);
+        }
+
+        protected void verTodosDep(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                cargarGrilla(listaCompleta);
+                limpiarForm();
+                SetFocus(grillaDeportistas);
             }
         }
     }

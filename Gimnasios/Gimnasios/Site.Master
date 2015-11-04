@@ -16,6 +16,7 @@
 
     <link href="Content/BootsWatch.css" rel="stylesheet" type="text/css" />
 
+
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -33,8 +34,8 @@
                 <%--Scripts de marco--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
-                <%--                <asp:ScriptReference Name="bootstrap" />--%>
-                <asp:ScriptReference Path="~/Scripts/bootstrap.js" />
+                <asp:ScriptReference Name="bootstrap" />
+                <%--<asp:ScriptReference Path="~/Scripts/bootstrap.js" />--%>
                 <asp:ScriptReference Name="respond" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
@@ -61,10 +62,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/ABMCProducto.aspx">Gestión de Productos</a></li>
-                        <li><a runat="server" href="~/ABMCDeportista">Gestión de deportistas</a></li>
+                        <li><a runat="server" href="~/ABMCProducto">Gestión de Productos</a></li>
+                        <li><a runat="server" href="~/ABMCDeportista">Gestión de Deportistas</a></li>
                         <li><a runat="server" href="~/Venta">Ventas de Productos</a></li>
+                        <li><a runat="server" href="~/RegistrarRutina">Nueva Rutina</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -92,5 +93,9 @@
 
         </div>
     </form>
+     <script src='<%= ResolveUrl("~/Scripts/jquery-2.1.4.min.js") %>'></script>
+    <script src='<%= ResolveUrl("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js") %>'></script>    
+     <script src='<%= ResolveUrl("https://jquery-ui.googlecode.com/svn-history/r3982/trunk/ui/i18n/jquery.ui.datepicker-es.js") %>'></script> 
+    <script type="text/javascript"> $.datepicker.setDefaults($.datepicker.regional['es']);</script>
 </body>
 </html>

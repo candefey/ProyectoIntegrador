@@ -10,6 +10,8 @@ namespace Negocio
 {
     public class GestorDeportista
     {
+        private static Deportista deportistaBuscado;
+
         public static List<Deportista> obtenerTodos()
         {
             List<Deportista> lista = new List<Deportista>();
@@ -107,6 +109,22 @@ namespace Negocio
         public static void eliminarDeportista(int cuit)
         {
             DaoDeportista.delete(cuit);
+        }
+
+        public static List<Deportista> filtrarDeportista(string ape)
+        {
+            return DaoDeportista.filtrar(ape);
+        }
+
+        public static Deportista buscarDeportistaPorDocumento(int nroDoc, int idTipoDoc)
+        {
+            deportistaBuscado = DaoDeportista.buscarPorDocumento(nroDoc, idTipoDoc);
+            return deportistaBuscado;
+        }
+
+        public static Deportista getDeportistaBuscado()
+        {
+            return deportistaBuscado;
         }
     }
 }
