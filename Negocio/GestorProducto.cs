@@ -2,6 +2,7 @@
 using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,13 @@ namespace Negocio
         {
             List<Producto> lista = new List<Producto>();
             lista = DaoProducto.select();
+            return lista;
+        }
+
+        public static List<DtoProductoVenta> obtenerProdVenta(int idCategoria)
+        {
+            List<DtoProductoVenta> lista = new List<DtoProductoVenta>();
+            lista = DaoProducto.selectoDtoProd(idCategoria);
             return lista;
         }
 
@@ -45,6 +53,20 @@ namespace Negocio
             DaoProducto.updatePorCodBarra(P);
         }
 
+        public static DataSet obtenerTipoDoc()
+        {
+            DataSet ds = new DataSet();
+            ds = DaoProducto.selectTipoDoc();
+            return ds;
+
+        }
+
+        public static List<Producto> busquedaPorNombre(String nombre)
+        {
+            List<Producto> lista = DaoProducto.selectWhere(nombre);
+            return lista;
+
+        }
 
 
 

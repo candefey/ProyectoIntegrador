@@ -12,5 +12,7 @@ namespace Entidades
         public string nombre { get; set; }
         public float precio { get; set; }
         public int stock { get; set; }
+        public int cantidad { get; set; }
+        public int codigoBarra { get; set; }
     }
 }

@@ -209,7 +209,7 @@ namespace Datos
 
         }
 
-        public static List<DtoProductoVenta> selectoDtoProd()
+        public static List<DtoProductoVenta> selectoDtoProd(int idCategoria)
         {
             List<DtoProductoVenta> lista = new List<DtoProductoVenta>();
             SqlConnection cn = new SqlConnection();
@@ -217,10 +217,11 @@ namespace Datos
             {
                 cn.ConnectionString = cadenaConex;
                 cn.Open();
-                string consulta = "SELECT P.nombre as NombreProd, P.precio, P.stock FROM Productos P";
+                string consulta = "SELECT P.nombre as NombreProd, P.precio, P.stock FROM Productos P WHERE P.idCategoriaProducto = @idCategoria";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = consulta;
                 cmd.Connection = cn;
+                cmd.Parameters.AddWithValue("idCategoria", idCategoria);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -242,7 +243,127 @@ namespace Datos
             }
             return lista;
         }
+
+        public static List<DtoProductoVenta> selectoDtoProd()
+        {
+            List<DtoProductoVenta> lista = new List<DtoProductoVenta>();
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                string consulta = "SELECT P.nombre as NombreProd, P.precio, P.stock, P.codigoBarra FROM Productos P";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = consulta;
+                cmd.Connection = cn;
+                
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    DtoProductoVenta p = new DtoProductoVenta();
+                    p.nombre = dr["NombreProd"].ToString();
+                    p.precio = float.Parse(dr["precio"].ToString());
+                    p.stock = (int)dr["stock"];
+                    p.codigoBarra = (int)dr["codigoBarra"];
+                    lista.Add(p);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new ApplicationException("Error SQL al obtener los Productos Simplificados.");
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+            return lista;
+        }
+
+
+        public static DataSet selectTipoDoc()
+        {
+            
+            DataSet ds;
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                string consulta = "SELECT idTipoDocumento, nombre FROM TiposDocumento";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = consulta;
+                cmd.Connection = cn;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                sda.Fill(ds);
+            }
+
+            catch (SqlException ex)
+            {
+                throw new ApplicationException("Error al obtener las Categorias de Producto.");
+
+            }
+            finally
+            {
+
+                cn.Close();
+            }
+            return ds;
+        }
+
+
+        public static List<Producto> selectWhere(String nombre)
+        {
+            List<Producto> lista = new List<Producto>();
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = cadenaConex;
+                cn.Open();
+                string consulta = "SELECT P.nombre as NombreProd, P.precio, P.stock, P.fechaRegistro, P.codigoBarra, CP.nombre as NombreCat, P.aceptaDevolucion FROM Productos P INNER JOIN CategoriasProducto CP ON (P.idCategoriaProducto = CP.idCategoriaProducto) WHERE P.nombre LIKE '%"+nombre+"%'";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = consulta;
+                cmd.Connection = cn;
+               
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Producto p = new Producto();
+                    p.Nombre = dr["NombreProd"].ToString();
+
+                    CategoriaProducto cat = new CategoriaProducto();
+                    cat.Nombre = (dr["NombreCat"].ToString());
+
+                    p.Categoria = cat;
+                    int aceptaDev = (int)dr["aceptaDevolucion"];
+                    Boolean acepta = false;
+                    if (aceptaDev == 1)
+                    {
+                        acepta = true;
+                    }
+                    p.AceptaDevolucion = acepta;
+                    p.CodigoBarra = (int)dr["codigoBarra"];
+                    p.FechaRegistro = (DateTime)dr["fechaRegistro"];
+                    p.Precio = float.Parse(dr["precio"].ToString());
+                    p.Stock = (int)dr["stock"];
+                    lista.Add(p);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new ApplicationException("Error SQL al obtener los Productos."+ex.ToString());
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+            return lista;
+        }
+
     }
+
 
 
 

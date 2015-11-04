@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Venta.aspx.cs" Inherits="Gimnasios.Venta" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Venta.aspx.cs" Inherits="Gimnasios.Venta" %>
 
 <%--<!DOCTYPE html>
 
@@ -20,22 +20,50 @@
     <title></title>
 </asp:Content>
 
-<asp:content contentplaceholderid="MainContent" id="main" runat="server">
-     
-    <asp:Table runat="server" Width="600" CssClass="table">
-          <asp:TableRow>
-              <asp:TableCell>
-                  <asp:Label runat="server" Text="Seleccione los productos y la cantidad requerida:" CssClass="control-label" Font-Size="Medium"></asp:Label>
-                </asp:TableCell>
-            </asp:TableRow>
-     </asp:Table>
+<asp:Content ContentPlaceHolderID="MainContent" ID="main" runat="server">
 
-    <asp:GridView ID="grillaProductos" runat="server" Height="165px" CssClass="table table-hover table-striped" HorizontalAlign="Center" OnRowCommand="grillaProductos_OnRowCommand">
+    <fieldset>
+        <legend>Mi carrito</legend>
+<%--        <div class="form-group">
+            <label class="col-lg-2 control-label">Seleccione una categoria:</label>
+            <div class="col-lg-10">
+                <asp:DropDownList ID="cbo_categorias" runat="server" AutoPostBack="true" Width="182px" CssClass="form-control" OnSelectedIndexChanged="cbo_categorias_SelectedIndexChanged"></asp:DropDownList>
+            </div>
+        </div>--%>
+    </fieldset>
+
+
+       <asp:GridView ID="grilla" runat="server" BorderStyle="Groove" Height="165px" class="table table-hover table-bordered table-condensed table-responsive table-striped" HorizontalAlign="Center" OnRowCommand="grilla_RowCommand">
         <Columns>
-            <asp:ButtonField Text="Seleccionar" CommandName="Select" />
+            <asp:ButtonField Text="Seleccionar" CommandName="Select" HeaderStyle-Width="40px" />
+            <asp:TemplateField HeaderText="Cantidad" HeaderStyle-Width="40px">
+                <ItemTemplate>
+                    <asp:TextBox ID="txt_cant" AutoPostBack="true" Width="40px" runat="server" ReadOnly="true" Enabled="false" CssClass="disabled" OnTextChanged="txt_cant_TextChanged"></asp:TextBox>
+                    
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
+        
+        <SelectedRowStyle CssClass="info"/>
+
     </asp:GridView>
 
-           
-</asp:content>
-     
+    <%--<asp:Button runat="server" ID="btn_confirmar" CssClass="btn btn-success" Text="Comprar" OnClick="javascript:window.open('Venta2.aspx','','width=600,height=400,left=50,top=50,toolbar=yes');" />--%>
+   
+    <div class="form-group" runat="server">
+        <div class="col-lg-10">
+            <input type="button" runat="server" id="btn_confirmar" class="btn btn-success" value="Comprar" onclick="javascript: window.open('Venta2.aspx', '', 'width=600,height=400,left=50,top=50,toolbar=yes');" />
+         <asp:label runat="server" Width="300px" ForeColor="Red"  ID="validadorServidor" Visible="false" class="col-lg-2 control-label">Ingrese una cantidad menor o igual al stock disponible y solo numeros</asp:label>
+        
+        </div> 
+       
+    </div>
+
+
+
+
+
+
+
+</asp:Content>
+

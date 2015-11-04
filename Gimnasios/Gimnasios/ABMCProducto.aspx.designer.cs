@@ -12,15 +12,6 @@
 public partial class ABMCProducto {
     
     /// <summary>
-    /// Label1 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label1;
-    
-    /// <summary>
     /// txt_nombre control.
     /// </summary>
     /// <remarks>
@@ -37,15 +28,6 @@ public partial class ABMCProducto {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-    
-    /// <summary>
-    /// Label2 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label2;
     
     /// <summary>
     /// txt_precio control.
@@ -75,15 +57,6 @@ public partial class ABMCProducto {
     protected global::System.Web.UI.WebControls.RangeValidator RangeValidator;
     
     /// <summary>
-    /// Label3 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label3;
-    
-    /// <summary>
     /// txt_stock control.
     /// </summary>
     /// <remarks>
@@ -111,15 +84,6 @@ public partial class ABMCProducto {
     protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
     
     /// <summary>
-    /// Label4 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label4;
-    
-    /// <summary>
     /// txt_fechaRegistro control.
     /// </summary>
     /// <remarks>
@@ -127,15 +91,6 @@ public partial class ABMCProducto {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox txt_fechaRegistro;
-    
-    /// <summary>
-    /// Label5 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label5;
     
     /// <summary>
     /// txt_codigoBarra control.
@@ -172,15 +127,6 @@ public partial class ABMCProducto {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Label Label7;
-    
-    /// <summary>
-    /// Label6 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label6;
     
     /// <summary>
     /// cbo_categorias control.
@@ -226,6 +172,33 @@ public partial class ABMCProducto {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button btn_limpiar;
+    
+    /// <summary>
+    /// txt_busqueda control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox txt_busqueda;
+    
+    /// <summary>
+    /// btn_busqueda control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btn_busqueda;
+    
+    /// <summary>
+    /// lbl_error control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lbl_error;
     
     /// <summary>
     /// grillaProductos control.

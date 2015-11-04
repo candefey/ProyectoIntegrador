@@ -13,12 +13,30 @@ namespace Gimnasios {
     public partial class Venta {
         
         /// <summary>
-        /// grillaProductos control.
+        /// grilla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grillaProductos;
+        protected global::System.Web.UI.WebControls.GridView grilla;
+        
+        /// <summary>
+        /// btn_confirmar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_confirmar;
+        
+        /// <summary>
+        /// validadorServidor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label validadorServidor;
     }
 }

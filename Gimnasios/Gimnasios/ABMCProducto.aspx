@@ -14,154 +14,166 @@
 
 <%--<form id="form1" runat="server">--%>
 <asp:Content ContentPlaceHolderID="MainContent" ID="main" runat="server">
+    
+    <fieldset>
+        <legend>Productos</legend>
 
-    <asp:Table runat="server" CssClass="table">
-
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="Label1" runat="server" Text="Nombre" CssClass="control-label" Font-Size="Medium"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-
-        <asp:TableRow>
-            <asp:TableCell>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Nombre</label>
+            <div class="col-lg-10">
                 <asp:TextBox ID="txt_nombre" runat="server" CssClass="form-control" Width="276px" CausesValidation="True"></asp:TextBox>
-            </asp:TableCell>
-            <asp:TableCell>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txt_nombre" Font-Bold="True" ForeColor="Red" SetFocusOnError="True" Width="160px">Campo Obligatorio</asp:RequiredFieldValidator>
-            </asp:TableCell>
-        </asp:TableRow>
+            </div>
+        </div>
 
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="Label2" runat="server" Text="Precio($)" CssClass="control-label" Font-Size="Medium"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Precio($)</label>
+            <div class="col-lg-10">
                 <asp:TextBox ID="txt_precio" runat="server" CssClass="form-control" Width="119px"></asp:TextBox>
-            </asp:TableCell>
-            <asp:TableCell>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_precio" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
                 <asp:RangeValidator runat="server" ID="RangeValidator" ControlToValidate="txt_precio" ErrorMessage="El precio debe ser un numero mayor a 1" Font-Bold="true" ForeColor="Red" MinimumValue="1" MaximumValue="10000" SetFocusOnError="True" Type="Integer"></asp:RangeValidator>
-            </asp:TableCell>
-        </asp:TableRow>
+            </div>
+        </div>
 
-
-
-
-
-
-
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="Label3" runat="server" Text="Stock" CssClass="control-label" Font-Size="Medium"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Stock</label>
+            <div class="col-lg-10">
                 <asp:TextBox ID="txt_stock" runat="server" CssClass="form-control" Width="119px"></asp:TextBox>
-            </asp:TableCell>
-            <asp:TableCell>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_stock" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
-
                 <asp:RangeValidator runat="server" ID="RangeValidator1" ControlToValidate="txt_stock" ErrorMessage="El stock debe ser un numero mayor a 0" Font-Bold="true" ForeColor="Red" MinimumValue="0" MaximumValue="10000" SetFocusOnError="True" Type="Integer"></asp:RangeValidator>
-            </asp:TableCell>
-        </asp:TableRow>
+            </div>
+        </div>
 
-
-
-
-
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="Label4" runat="server" Text="Fecha de registro" CssClass="control-label" Font-Size="Medium"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Fecha de Registro</label>
+            <div class="col-lg-10">
                 <asp:TextBox ID="txt_fechaRegistro" runat="server" CssClass="form-control" ReadOnly="True" Width="102px"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
+                <br />
+            </div>
+        </div>
 
-
-
-
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="Label5" runat="server" Text="Número de Código de barra" CssClass="control-label" Font-Size="Medium"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Numero de Codigo de Barra</label>
+            <div class="col-lg-10">
                 <asp:TextBox ID="txt_codigoBarra" runat="server" CssClass="form-control"></asp:TextBox>
-            </asp:TableCell>
-            <asp:TableCell>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Text="Campo Obligatorio" ControlToValidate="txt_codigoBarra" Font-Bold="true" ForeColor="Red" SetFocusOnError="true" Width="160px"></asp:RequiredFieldValidator>
 
                 <asp:RangeValidator runat="server" ID="RangeValidator2" ControlToValidate="txt_codigoBarra" ErrorMessage="El codigo de barra debe ser un numero mayor a 0 y menor a 1000000" Font-Bold="true" ForeColor="Red" MinimumValue="0" MaximumValue="1000000" SetFocusOnError="True" Type="Integer"></asp:RangeValidator>
-                <br />
                 <asp:Label ID="Label7" runat="server" Text="Este numero de codigo de barra ya existe o es incorrecto" Font-Bold="true" ForeColor="Red" Visible="false"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
+            </div>
+        </div>
 
-
-
-
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="Label6" runat="server" Text="Categoría de Producto" CssClass="control-label" Font-Size="Medium"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Categoria de Producto</label>
+            <div class="col-lg-10">
                 <asp:DropDownList ID="cbo_categorias" runat="server" Width="182px" CssClass="form-control">
                 </asp:DropDownList>
-            </asp:TableCell>
-        </asp:TableRow>
+            </div>
+        </div>
 
+        <div class="form-group">
 
-
-
-        <asp:TableRow>
-            <asp:TableCell>
+            <div class="col-lg-10">
                 <asp:CheckBox ID="check_aceptaDevolucion" runat="server" Text="Acepta devolución" CssClass="checkbox-inline" />
-            </asp:TableCell>
-        </asp:TableRow>
+                <br />
+                <br />
+                <br />
+                <br />
 
+            </div>
+        </div>
 
+        <div class="form-group">
 
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Button ID="btn_guardar" runat="server" Text="Guardar" CssClass="btn-success" OnClick="btn_guardar_Click" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button ID="btn_actualizar" Visible="false" runat="server" Text="Actualizar" CssClass="btn-info" OnClick="btn_actualizar_Click" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button ID="btn_limpiar" CausesValidation="false" runat="server" Text="Cancelar" CssClass="btn-danger" OnClick="btn_limpiar_Click" />
-            </asp:TableCell>
+            <div class="col-lg-10">
+                <asp:Button ID="btn_guardar" runat="server" Text="Guardar" CssClass="btn btn-success" OnClick="btn_guardar_Click" />
+                <asp:Button ID="btn_actualizar" Visible="false" runat="server" Text="Actualizar" CssClass="btn btn-info" OnClick="btn_actualizar_Click" />
+                <asp:Button ID="btn_limpiar" CausesValidation="false" runat="server" Text="Cancelar" CssClass="btn btn-danger" OnClick="btn_limpiar_Click" />
 
-        </asp:TableRow>
-    </asp:Table>
+            </div>
+        </div>
+    </fieldset>
 
     <br />
     <br />
     <br />
-    <asp:GridView ID="grillaProductos" runat="server" Height="165px" CssClass="table table-hover table-striped" HorizontalAlign="Center" OnRowCommand="grillaProductos_OnRowCommand" OnRowDeleting="grillaProductos_RowDeleting">
+
+      <div class="form-group">
+            <label class="col-lg-2 control-label">Ingrese su búsqueda aquí(Nombre de producto):</label>
+            <div class="col-lg-10">
+                <asp:TextBox ID="txt_busqueda" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Button ID="btn_busqueda" CausesValidation="false" runat="server" Text="Buscar" CssClass="btn btn-warning" OnClick="btn_busqueda_Click" />
+                <asp:Label ID="lbl_error" runat="server" Text="No se encontraron coincidencias" Font-Bold="true" ForeColor="Red" Visible="false"></asp:Label>
+            </div>
+        </div>
+
+    <asp:GridView ID="grillaProductos" runat="server" BorderStyle="Groove" Height="165px" class="table table-hover table-bordered table-condensed table-responsive table-striped" HorizontalAlign="Center" OnRowCommand="grillaProductos_OnRowCommand" OnRowDeleting="grillaProductos_RowDeleting">
         <Columns>
+
             <asp:ButtonField Text="Seleccionar" CommandName="Select" />
             <asp:ButtonField Text="Eliminar" CommandName="Delete" />
         </Columns>
 
+        <SelectedRowStyle CssClass="info" />
+
     </asp:GridView>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+
+
+
+    <script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  });
+  </script>
+
+<%--        <script type="text/javascript">
+            function hola() {
+            alert('Producto guardado con exito!');}
+        </script>
+        --%>
+
+      <%--  Filter:
+        <input type="text" id="FilterTextBox" name="FilterTextBox" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //agregar una nueva columna con todo el texto 
+            //contenido en las columnas de la grilla 
+            // contains de Jquery es CaseSentive, por eso a minúscula
+            $(".filtrar tr:has(td)").each(function () {
+                var t = $(this).text().toLowerCase();
+                $("<td class='indexColumn'></td>")
+                .hide().text(t).appendTo(this);
+            });
+            //Agregar el comportamiento al texto (se selecciona por el ID) 
+            $("#texto").keyup(function () {
+                var s = $(this).val().toLowerCase().split(" ");
+                $(".filtrar tr:hidden").show();
+                $.each(s, function () {
+                    $(".filtrar tr:visible .indexColumn:not(:contains('"
+                    + this + "'))").parent().hide();
+                });
+            });
+        });
+    </script>--%>
+
+
 </asp:Content>
+
 <%--    </form>
 </body>
 </html>--%>
